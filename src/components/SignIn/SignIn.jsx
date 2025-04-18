@@ -1,3 +1,4 @@
+import React from 'react';
 import './signIn.scss';
 import InputField from "../InputField/InputField";
 import Loader from "../Loader/Loader";
