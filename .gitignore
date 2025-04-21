@@ -31,3 +31,4 @@ firebase-debug.log*
 .idea
 .env
 package-lock.json
+pnpm-lock.yaml
