@@ -28,7 +28,7 @@ test.describe("Movies Page Tests", () => {
       const expectedTitles = fetchMovieDataConfig.map((row) => row.title);
 
       // Get all row titles on the page
-      const rowTitles = await page.locator("h2.Row__title").allTextContents();
+      const rowTitles = await page.locator("h3.Row__title").allTextContents();
 
       // Verify each expected title is present in the page
       for (const expectedTitle of expectedTitles) {

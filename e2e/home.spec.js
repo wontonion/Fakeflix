@@ -35,9 +35,13 @@ test.describe("Home Page Tests", () => {
     test("should display banner panel with two buttons", async () => {
       await expect(page.locator("div.Banner__buttons")).toBeVisible();
       // one for play button
-      await expect(page.locator("a.Banner__button[href='/play']:has-text('Play')")).toBeVisible();
+      await expect(
+        page.locator("a.Banner__button[href='/play']:has-text('Play')")
+      ).toBeVisible();
       // one for more info button
-      await expect(page.locator("button.Banner__button:has-text('More info')")).toBeVisible();
+      await expect(
+        page.locator("button.Banner__button:has-text('More info')")
+      ).toBeVisible();
     });
   });
 
@@ -48,19 +52,20 @@ test.describe("Home Page Tests", () => {
       expect(rowCount).toBeGreaterThan(0);
     });
 
-    
-        test("should display rows with correct titles", async () => {
-          // Check for all movie row titles from fetchMovieDataConfig
-          const expectedTitles = fetchMovieDataConfig.map((row) => row.title);
-          
-          // Get all row titles on the page
-          const rowTitles = await page.locator("h3.Row__title").allTextContents();
-          
-          // Verify each expected title is present in the page
-          for (const expectedTitle of expectedTitles) {
-            expect(rowTitles.some(title => title.includes(expectedTitle))).toBeTruthy();
-          }
-        });
+    test("should display rows with correct titles", async () => {
+      // Check for all movie row titles from fetchMovieDataConfig
+      const expectedTitles = fetchMovieDataConfig.map((row) => row.title);
+
+      // Get all row titles on the page
+      const rowTitles = await page.locator("h3.Row__title").allTextContents();
+
+      // Verify each expected title is present in the page
+      for (const expectedTitle of expectedTitles) {
+        expect(
+          rowTitles.some((title) => title.includes(expectedTitle))
+        ).toBeTruthy();
+      }
+    });
 
     test("should display movie posters in each row", async () => {
       // Wait for the poster images to load
@@ -89,7 +94,9 @@ test.describe("Home Page Tests", () => {
     });
 
     test("should contain reference to developer", async () => {
-      await expect(page.locator("footer.Credits")).toContainText("Developed by Th3Wall");
+      await expect(page.locator("footer.Credits")).toContainText(
+        "Developed by Th3Wall"
+      );
     });
   });
 
