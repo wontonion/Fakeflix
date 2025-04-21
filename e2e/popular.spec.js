@@ -19,7 +19,7 @@ test.describe("News & Popular Page Tests", () => {
     await page.locator("a[href='/popular']").click();
 
     // Add a small delay to ensure everything is properly loaded and saved
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(3000);
   });
 
   test.describe("News & Popular row tests", () => {
@@ -28,7 +28,7 @@ test.describe("News & Popular Page Tests", () => {
       const expectedTitles = fetchPopularDataConfig.map((row) => row.title);
 
       // Get all row titles on the page
-      const rowTitles = await page.locator("h2.Row__title").allTextContents();
+      const rowTitles = await page.locator("h3.Row__title").allTextContents();
 
       // Verify each expected title is present in the page
       for (const expectedTitle of expectedTitles) {

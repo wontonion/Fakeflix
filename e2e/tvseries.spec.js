@@ -19,7 +19,7 @@ test.describe("TV Series Page Tests", () => {
     await page.locator("a[href='/tvseries']").click();
 
     // Add a small delay to ensure everything is properly loaded and saved
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(3000);
   });
 
   test.describe("TV servies row tests", () => {
@@ -28,7 +28,7 @@ test.describe("TV Series Page Tests", () => {
       const expectedTitles = fetchSeriesDataConfig.map((row) => row.title);
 
       // Get all row titles on the page
-      const rowTitles = await page.locator("h2.Row__title").allTextContents();
+      const rowTitles = await page.locator("h3.Row__title").allTextContents();
 
       // Verify each expected title is present in the page
       for (const expectedTitle of expectedTitles) {

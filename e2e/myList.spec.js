@@ -1,4 +1,4 @@
-const { test } = require("@playwright/test");
+const { test, expect } = require("@playwright/test");
 test.describe.configure({ mode: "serial" });
 
 /** @type {import('@playwright/test').Page} */
@@ -18,17 +18,20 @@ test.describe("My List Page Tests", () => {
     await page.locator("a[href='/mylist']").click();
 
     // Add a small delay to ensure everything is properly loaded and saved
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
-    
-    test.describe("Routing to my list page", () => {
-        test("should be on my list page", async () => {
-            await expect(page.url()).toContain("/mylist");
-            });
-    })
+
+  test.describe("Routing to my list page", () => {
+    test("should be on my list page", async () => {
+      await expect(page.url()).toContain("mylist");
+    });
+  });
 
   test("should display no items in my list", async () => {
-    await expect(page.locator("h2:has-text('Sorry, you don't have a favourite movie or tv-show yet.')")).toBeVisible();
+    await page.waitForTimeout(2000);
+    await expect(
+      page.locator("h2.MyList__title:has-text('Sorry, you don't have a favourite movie or tv-show yet.')")
+    ).toBeVisible();
   });
 
   test.afterAll(async () => {
