@@ -19,9 +19,6 @@ module.exports = {
     '!src/index.js',
     '!src/reportWebVitals.js',
   ],
-  transform: {
-    '^.+\\.(js|jsx)$': 'babel-jest',
-  },
   globalTeardown: '<rootDir>/jest.teardown.js',
   coverageThreshold: {
     global: {
