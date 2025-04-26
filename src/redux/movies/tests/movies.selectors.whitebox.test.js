@@ -31,6 +31,7 @@ describe('Movies Selectors', () => {
     const sliceKey = `${genre}Movies`
     const primName = `select${genre[0].toUpperCase()}${genre.slice(1)}Movies`
     const memoName = `${primName}Selector`
+    const fn = selectors[memoName];
 
     describe(`${primName}`, () => {
       it('returns the correct slice from state', () => {
@@ -38,9 +39,21 @@ describe('Movies Selectors', () => {
       })
     })
 
+    it("returns undefined when state is undefined", () => {
+      expect(fn(undefined)).toBeUndefined();
+    });
+
+    it("returns undefined when movies slice is missing", () => {
+      expect(fn({})).toBeUndefined();
+    });
+
+    it("returns undefined when specific genre slice is missing", () => {
+      expect(fn({ movies: {} })).toBeUndefined();
+    });
+
     describe(`${memoName}`, () => {
       it('returns the .data array for that genre', () => {
-        expect(selectors[memoName](mockState)).toEqual(
+        expect(fn(mockState)).toEqual(
           mockState.movies[sliceKey].data
         )
       })
