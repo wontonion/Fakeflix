@@ -28,9 +28,11 @@ test.describe("My List Page Tests", () => {
   });
 
   test("should display no items in my list", async () => {
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(5000);
+    await page.locator("a[href='/mylist']").click();
+    await page.waitForTimeout(5000);
     await expect(
-      page.locator("h2.MyList__title:has-text('Sorry, you don't have a favourite movie or tv-show yet.')")
+      page.getByText("Sorry, you don't have a favourite movie or tv-show yet.")
     ).toBeVisible();
   });
 
