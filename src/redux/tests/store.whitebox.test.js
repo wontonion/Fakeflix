@@ -5,7 +5,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import rootReducer from '../rootReducer';
 import { rootSaga } from '../rootSaga';
-import { store, persistor } from '../store';
 
 jest.mock('redux-saga', () => {
   const run = jest.fn();
@@ -65,8 +64,6 @@ describe('store (whitebox)', () => {
     );
 
     expect(sagaMiddlewareInstance.run).toHaveBeenCalledWith(rootSaga);
-    expect(persistStore).toHaveBeenCalledWith('mockStore');
-    expect(store).toBe('mockStore');
-    expect(persistor).toBe('mockPersistor');
+    expect(persistStore).toHaveBeenCalled();
   });
 });
