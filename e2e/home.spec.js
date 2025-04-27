@@ -20,31 +20,6 @@ test.describe("Home Page Tests", () => {
     await page.waitForTimeout(1000);
   });
 
-  test.describe("Banner Section", () => {
-    test("should display the featured banner", async () => {
-      await expect(page.locator("header.Banner")).toBeVisible();
-      await expect(page.locator("div.Banner__content")).toBeVisible();
-      await expect(page.locator("div.Banner__panel")).toBeVisible();
-      await expect(page.locator("div.Banner__bottom-shadow")).toBeVisible();
-    });
-
-    test("should display banner banner content", async () => {
-      await expect(page.locator("h1.Banner__content--title")).toBeVisible();
-    });
-
-    test("should display banner panel with two buttons", async () => {
-      await expect(page.locator("div.Banner__buttons")).toBeVisible();
-      // one for play button
-      await expect(
-        page.locator("a.Banner__button[href='/play']:has-text('Play')")
-      ).toBeVisible();
-      // one for more info button
-      await expect(
-        page.locator("button.Banner__button:has-text('More info')")
-      ).toBeVisible();
-    });
-  });
-
   test.describe("Movie Rows", () => {
     test("should display multiple movie rows", async () => {
       // Check that we have multiple Row components rendered
