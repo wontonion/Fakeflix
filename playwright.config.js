@@ -35,11 +35,11 @@ module.exports = defineConfig({
   },
   projects: [
     // Auth tests - without authentication state
-    {
-      name: 'auth-tests',
-      testMatch: /.*auth\.spec\.js/,
-      use: { ...devices['Desktop Chrome'] },
-    },
+    // {
+    //   name: 'auth-tests',
+    //   testMatch: /.*auth\.spec\.js/,
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
     // Setup project - only for authentication
     // {
     //   name: 'setup',
@@ -50,7 +50,7 @@ module.exports = defineConfig({
     // Test projects - using the authenticated state for all non-auth tests
     {
       name: 'chromium',
-      testIgnore: /.*auth\.spec\.js/,
+      // testIgnore: /.*auth\.spec\.js/,
       use: { 
         ...devices['Desktop Chrome'],
         // Use prepared auth state
@@ -60,7 +60,7 @@ module.exports = defineConfig({
     },
     {
       name: 'firefox',
-      testIgnore: /.*auth\.spec\.js/,
+      // testIgnore: /.*auth\.spec\.js/,
       use: { 
         ...devices['Desktop Firefox'],
         // Use prepared auth state
@@ -70,7 +70,7 @@ module.exports = defineConfig({
     },
     {
       name: 'webkit',
-      testIgnore: /.*auth\.spec\.js/,
+      // testIgnore: /.*auth\.spec\.js/,
       use: { 
         ...devices['Desktop Safari'],
         // Use prepared auth state
