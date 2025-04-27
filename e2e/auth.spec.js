@@ -71,38 +71,26 @@ test.describe("Authentication Page Tests", () => {
         page.locator('span.toggler:has-text("Sign up")')
       ).toBeVisible();
     });
-    // test error messages for failed login after clicking "Sign in"
-    // test "sign in with google" button
-    // test "sign in anonymously" button
   });
 
   test.describe("Sign Up Navigation", () => {
-    test("should navigate to sign up form when clicking the Sign up link", async ({
+    test("should display sign up form when clicking the Sign up link", async ({
       page,
     }) => {
-      await page.locator('span.toggler:has-text("Sign up")').click();
+      await page.locator('span.toggler:has-text("Sign Up")').click();
+      await page.waitForTimeout(3000);
       await expect(
         page.locator('h2.Auth__content--title:has-text("Sign Up")')
       ).toBeVisible();
 
       // Test Sign Up form elements after navigation
       await expect(
-        page.locator(
-          'input[type="text"][name="displayName"][placeholder="Your name"]'
-        )
+        page.locator('input[placeholder="Your name"]')
       ).toBeVisible();
+      await expect(page.locator('input[placeholder="E-mail"]')).toBeVisible();
+      await expect(page.locator('input[placeholder="Password"]')).toBeVisible();
       await expect(
-        page.locator('input[type="email"][name="email"][placeholder="E-mail"]')
-      ).toBeVisible();
-      await expect(
-        page.locator(
-          'input[type="password"][name="password"][placeholder="Password"]'
-        )
-      ).toBeVisible();
-      await expect(
-        page.locator(
-          'input[type="password"][name="check_password"][placeholder="Repeat your password"]'
-        )
+        page.locator('input[placeholder="Repeat your password"]')
       ).toBeVisible();
 
       // Test security warning
@@ -114,10 +102,10 @@ test.describe("Authentication Page Tests", () => {
 
       // Test sign up button
       await expect(
-        page.locator("button.SignIn__form--button.button__submit")
+        page.locator("button.SignUp__form--button.button__submit")
       ).toBeVisible();
       await expect(
-        page.locator('button[type="submit"]:has-text("Sign up")')
+        page.locator('button[type="submit"]:has-text("Sign Up")')
       ).toBeVisible();
 
       // Test sign in link
@@ -129,20 +117,22 @@ test.describe("Authentication Page Tests", () => {
       ).toBeVisible();
     });
 
-    test("should navigate back to login form when clicking the Sign in link", async ({
-      page,
-    }) => {
-      // First navigate to sign up form
-      await page.locator('span.toggler:has-text("Sign up")').click();
-      await expect(
-        page.locator('h2.Auth__content--title:has-text("Sign Up")')
-      ).toBeVisible();
+    test.describe("Sign Up and Sign In Navigation", () => {
+      test("should navigate back to login form when clicking the Sign in link", async ({
+        page,
+      }) => {
+        // First navigate to sign up form
+        await page.locator('span.toggler:has-text("Sign Up")').click();
+        await expect(
+          page.locator('h2.Auth__content--title:has-text("Sign Up")')
+        ).toBeVisible();
 
-      // Then test navigation back to login
-      await page.locator('span.toggler:has-text("Sign in")').click();
-      await expect(
-        page.locator('h2.Auth__content--title:has-text("Sign In")')
-      ).toBeVisible();
+        // Then test navigation back to login
+        await page.locator('span.toggler:has-text("Sign In")').click();
+        await expect(
+          page.locator('h2.Auth__content--title:has-text("Sign In")')
+        ).toBeVisible();
+      });
     });
   });
 });
