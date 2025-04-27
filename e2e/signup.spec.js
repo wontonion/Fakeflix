@@ -13,6 +13,29 @@ test.describe("Sign Up component Tests", () => {
     await page.locator('span.toggler:has-text("Sign Up")').click();
     await page.waitForTimeout(3000);
   });
+  
+  test.describe("input fields should have correct type", () => {
+    test("name input field should have type text", async () => {
+      await expect(
+        page.getByPlaceholder("Your name")
+      ).toHaveAttribute("type", "text");
+    });
+    test("email input field should have type email", async () => {
+      await expect(
+        page.getByPlaceholder("E-mail")
+      ).toHaveAttribute("type", "email");
+    });
+    test("password input field should have type password", async () => {
+      await expect(
+        page.getByPlaceholder("Password").first()
+      ).toHaveAttribute("type", "password");
+    });
+    test("repeat password input field should have type password", async () => {
+      await expect(
+        page.getByPlaceholder("Repeat your password")
+      ).toHaveAttribute("type", "password");
+    });
+  });
 
   test.describe("unexpected error message in sign up form", () => {
       test("should show error message for empty input", async () => {
