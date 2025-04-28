@@ -14,9 +14,23 @@ Zichen Fu, zfu16
  - Report path: ./vitest-report
 2. Playwright
  - Test path: ./e2e
+ - Test path: TODO
+ - Report path: 
 
 ### Running Instructions
- - For Vitest Blackbox unit tests: pnpm test:unit:report
+ - For Vitest Blackbox unit tests:
+    - Running command: `pnpm test:unit:report`
+    - Expected running time: 2.57s
+    - Expected outcome: `Tests  14 failed | 26 passed (40)` (failure reasons are documented below)
+
+ - For Playwright Whitebox tests:
+    - TODO: placeholder
+  
+ - For Playwright GUI tests:
+    - TODO: placeholder
+  
+ - For Integration tests:
+    - TODO: placeholder
 
 ### Clarification on failures we found
 1. From Vitest unit testing:
