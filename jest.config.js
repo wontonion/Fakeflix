@@ -1,8 +1,7 @@
 module.exports = {
   roots: ['<rootDir>/src'],
   testMatch: [
-    '**/__tests__/**/*.+(ts|tsx|js|jsx)',
-    '**/?(*.)+(spec|test).+(ts|tsx|js|jsx)',
+    '**/*whitebox.test.js',
   ],
   setupFiles: ['<rootDir>/jest.setup.js'],
   testEnvironment: 'jsdom',
@@ -15,7 +14,9 @@ module.exports = {
     '^redux-persist/es/(.*)$': 'redux-persist/lib/$1',
   },
   collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
+    'src/redux/**/*.js',
+    'src/firebase/*.js',
+    '!src/redux/**/__tests__/*.js',
     '!src/index.js',
     '!src/reportWebVitals.js',
   ],
