@@ -10,7 +10,13 @@ Zichen Fu, zfu16
 
 ### Testing Tools
 1. Vitest: a fast, Vite-native testing framework for JavaScript and TypeScript projects, offering Jest-compatible APIs, built-in coverage, and instant feedback with modern ESM support. We used this to perform **blackbox unit tests** on the hook functions.
+ - Test path: ./vitest
+ - Report path: ./vitest-report
 2. Playwright
+ - Test path: ./e2e
+
+### Running Instructions
+ - For Vitest Blackbox unit tests: pnpm test:unit:report
 
 ### Clarification on failures we found
 1. From Vitest unit testing:
