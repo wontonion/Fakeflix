@@ -15,6 +15,7 @@ module.exports = {
   },
   collectCoverageFrom: [
     'src/redux/**/*.js',
+    'src/firebase/*.js',
     '!src/redux/**/__tests__/*.js',
     '!src/index.js',
     '!src/reportWebVitals.js',
