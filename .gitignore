@@ -10,7 +10,7 @@
 
 # playwright test-results and reports
 /playwright-report/data
-
+/test-results
 # production
 /build
 
