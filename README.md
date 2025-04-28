@@ -21,6 +21,12 @@ Zichen Fu, zfu16
 
 - Test path: ./e2e
 - Report path: ./playwright-report
+- The report only contains the report page. The "data" folder is not included in the repo due to the size. So cannot see the video recording of failedtest cases.
+
+3. Jest: Light weight testing library for JavaScript project, has built-in coverage metrics and has powerful mocking and assertion capability. We used Jest for whitebox unit testing, on redux global state management of the system to ensure data is stored and transformed correctly. We used mocking and stubbing extensively throughout the test cases because Jest does not work well when there are third party library dependencies.
+
+- Test path: src/\**/*whitebox.test.js
+- Report path: ./jest-coverage
 
 ### Running Instructions
 
