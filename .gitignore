@@ -9,8 +9,7 @@
 /coverage
 
 # playwright test-results and reports
-/test-results
-/playwright-report/*
+/playwright-report/data
 
 # production
 /build
