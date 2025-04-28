@@ -20,6 +20,22 @@ Zichen Fu, zfu16
 2. Playwright
 
 - Test path: ./e2e
+- Report path: ./playwright-report
+- The report only contains the report page. The "data" folder is not included in the repo due to the size. So cannot see the video recording of failedtest cases.
+
+3. Jest: Light weight testing library for JavaScript project, has built-in coverage metrics and has powerful mocking and assertion capability. We used Jest for whitebox unit testing, on redux global state management of the system to ensure data is stored and transformed correctly. We used mocking and stubbing extensively throughout the test cases because Jest does not work well when there are third party library dependencies.
+
+- Test path: src/\**/*whitebox.test.js
+- Report path: ./jest-coverage
+
+### Running Instructions
+
+- For Vitest Blackbox unit tests:
+
+  - Running command: `pnpm test:unit:report`
+  - Expected running time: 2.57s
+  - Expected outcome: `Tests  14 failed | 26 passed (40)` (failure reasons are documented below)
+
 - Test path: TODO
 - Report path:
 
@@ -40,16 +56,14 @@ Zichen Fu, zfu16
     ```
     (failure reasons are documented below)
 
-- For Playwright Whitebox tests:
+- For Playwright integration test and GUI tests:
 
-  - TODO: placeholder
+  - Running Command: To run the GUI tests, we need to start the app first.
+    - `npm run start`
+    - `npm run test:e2e`
+  - Expected running time: 10 mintes (with 6 workers) and plus (depends on the performance of the machine)
+  - Expected outcome: 2 failed tests out of 231 tests (due to the some unstable tests, some testcases will fail if using multiple workers, but it will pass if using single worker. Details are documented below)
 
-- For Playwright GUI tests:
-
-  - TODO: placeholder
-
-- For Integration tests:
-  - TODO: placeholder
 - For Jest whitebox unit tests:
   - Running command `npm run test:coverage`
   - Expected outcome:
@@ -89,15 +103,17 @@ Zichen Fu, zfu16
 
 - Hook `useRetrieveData` fails because it incorrectly assumes a valid array will always be returned, while the tests correctly explore invalid, null, and undefined scenarios that the hook does not currently defend against.
 
-2. From Playwright Whitebox Testing:
+2. From Playwright integration testing and GUI Testing:
 
--
+- Overview: GUI testing is conducted by two parts:
+  - Pages: Ensure the pages are rendered correctly, all the elements are visible correctly. This application contains this main page: login page, home page, movie page, TV&News page, popular page, and my list page.
+  - Components (in combination of integration test): Ensure the components are workig as expected after some interactions. This part mainly focus on the interaction with the components and the response of the components.
+- Challenges: Since this is a web application focus on visual effects, it contains a lot of animations and transitions. Sometimes the animation might be blocked by the network latency. In this case, the fixed timeout might not be enough to wait for the animation to complete. Also, because of the rate limit of the API, the testcases will fail if the API is called too frequently in a short period of time. This usually happens when playwright running multiple workers on different browsers engine.
+- Failed Testcases: regardless the unstable network and the perfomance of animations, two testcases detected the fault in the code:
+  - The misuse of "type" of input element in login and signup page. For the email input, the input has the type "text", but the testcases expect the input to be "email". Even though the validation of form will examine the input to be correct email address, the testcases will fail because of the type mismatch. It will be better to use "email" as the type of the input. This will make the form validation more robust and reliable.
+  - Failure to transit the icon after adding media into my favorite list. On the poster element, row poster element, and detail dialog of poster, a "plus" button is used to add the media into my favorite list. However, the testcases expect the icon to be a "minus" icon, but it actually stays as a "plus" icon. This will cause confusion to the users. In this case, users will not sure whether the media is in the favorite list or not.
 
-3. From Playwright GUI Testing:
-
--
-
-4. From Jest Whitebox Testing:
+3. From Jest Whitebox Testing:
 
 - In the beginning, we focused on statement and branch coverage, which did not yield any useful hint of the the underlying fault. After achieving 100% coverage on the targeted files, we decided to test with invalid inputs, such as providing empty array or `undefined` values to functions. As a result, the faults started appearing. Here is a list of the prominant failures we revealed:
 
