@@ -36,4 +36,9 @@ Zichen Fu, zfu16
   ```
 
  - Hook `useRetrieveData` fails because it incorrectly assumes a valid array will always be returned, while the tests correctly explore invalid, null, and undefined scenarios that the hook does not currently defend against.
-  
+
+  2. From Playwright Whitebox Testing:
+   - 
+  3. From Playwright GUI Testing:
+   -
+     
